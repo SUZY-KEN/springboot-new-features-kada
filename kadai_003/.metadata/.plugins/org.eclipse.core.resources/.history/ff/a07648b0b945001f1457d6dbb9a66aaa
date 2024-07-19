@@ -1,0 +1,20 @@
+package com.example.samuraitravel.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.example.samuraitravel.security.UserDetailsImp1;
+
+
+@Controller
+public class FavoriteContoroller {
+
+	@GetMapping("/favorites")
+	public String favorite(UserDetailsImp1 userDetailsImp1) 
+	{
+		
+		
+		return "favorites/index";
+	}
+	
+}

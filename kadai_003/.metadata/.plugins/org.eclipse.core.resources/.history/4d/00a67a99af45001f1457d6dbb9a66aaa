@@ -1,0 +1,27 @@
+package com.example.samuraitravel.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.samuraitravel.repository.FavoriteRepository;
+
+@Service
+public class FavoriteService {
+
+	private final FavoriteRepository favoriteRepository;
+	
+	public FavoriteService(FavoriteRepository favoriteRepository) {
+	this.favoriteRepository=favoriteRepository;
+	}
+	
+	//お気に入りであるかの判定
+	public boolean isFavorite(Integer houseId,Integer userId)
+	{
+		return favoriteRepository.findAllbyHouseIdAndUserId(houseId, userId)!=null;
+	}
+	
+	//お気に入りレコードの作成
+	
+	public void createFavorite()
+	{}
+	
+}
