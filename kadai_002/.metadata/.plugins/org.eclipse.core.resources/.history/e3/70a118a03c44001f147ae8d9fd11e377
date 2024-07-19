@@ -1,0 +1,77 @@
+package com.example.samuraitravel.service;
+
+import java.sql.Timestamp;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.samuraitravel.entity.House;
+import com.example.samuraitravel.entity.Review;
+import com.example.samuraitravel.entity.User;
+import com.example.samuraitravel.form.ReviewForm;
+import com.example.samuraitravel.repository.HouseRepository;
+import com.example.samuraitravel.repository.ReviewRepository;
+import com.example.samuraitravel.repository.UserRepository;
+
+
+@Service
+public class ReviewService {
+
+	private final ReviewRepository reviewRepository;
+	   
+     private final HouseRepository houseRepository;  
+	 private final UserRepository userRepository;  
+	 
+	     
+	     public  ReviewService(ReviewRepository reviewRepository, HouseRepository houseRepository, UserRepository userRepository) 
+	     {
+	         this.reviewRepository = reviewRepository;  
+	         this.houseRepository = houseRepository;  
+	         this.userRepository = userRepository;  
+	         
+	     }    
+	
+	
+	//れびゅがあるか判定する
+//	     public boolean hasComment(House house)
+//	     {
+//	    	
+//	 		Review review=reviewRepository.findAllByHouseAndUser(house, userId);
+//	 		
+//	 		return userId.equals(reviewedUserId);
+//	     }
+
+	     
+//投稿するときの情報の登録	     
+	@Transactional
+	public void createReview(ReviewForm reviewForm)
+	{
+		Review review=new Review();
+		User user=userRepository.getReferenceById(reviewForm.getUserId());
+		House house=houseRepository.getReferenceById(reviewForm.getHouseId());
+		
+		review.setUser(user);
+		review.setHouse(house);
+		review.setStarNum(1);
+		review.setPostedComment(reviewForm.getPostedComment());
+		review.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
+		reviewRepository.save(review);
+	}
+	@Transactional
+	public void updateReview(ReviewForm reviewForm)
+	{
+		Review review=new Review();
+		User user=userRepository.getReferenceById(reviewForm.getUserId());
+		House house=houseRepository.getReferenceById(reviewForm.getHouseId());
+		
+		review.setUser(user);
+		review.setHouse(house);
+		review.setStarNum(1);
+		review.setPostedComment(reviewForm.getPostedComment());
+		review.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
+		reviewRepository.save(review);
+	}	
+	
+}
