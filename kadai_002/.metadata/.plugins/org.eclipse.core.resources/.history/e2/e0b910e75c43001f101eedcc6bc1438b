@@ -1,0 +1,111 @@
+package com.example.samuraitravel.controller;
+
+import java.util.Iterator;
+
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.example.samuraitravel.entity.House;
+import com.example.samuraitravel.entity.User;
+import com.example.samuraitravel.form.ReviewForm;
+import com.example.samuraitravel.repository.HouseRepository;
+import com.example.samuraitravel.repository.ReviewRepository;
+import com.example.samuraitravel.repository.UserRepository;
+import com.example.samuraitravel.security.UserDetailsImp1;
+import com.example.samuraitravel.service.ReviewService;
+
+
+
+
+@Controller
+@RequestMapping("/review")
+public class ReviewController {
+	
+	private final ReviewService reviewService;
+	private final HouseRepository houseRepository;
+	private final UserRepository userRepository;
+	private final ReviewRepository reviewRepository;
+	
+	
+
+	public ReviewController(ReviewService reviewService,HouseRepository houseRepository,UserRepository userRepository,ReviewRepository reviewRepository)
+	{
+		
+		this.houseRepository=houseRepository;
+		this.reviewService=reviewService;
+		this.userRepository=userRepository;
+		this.reviewRepository=reviewRepository;
+	}
+	
+
+//  houses/show.htmlのボタンから
+//	登録フォーム
+	@GetMapping("/{id}")
+	public String create(@PathVariable(name="id")Integer id,Model model,@AuthenticationPrincipal  UserDetailsImp1 userDetailsImp1)
+	{
+		
+		House house=houseRepository.getReferenceById(id);
+		model.addAttribute("house",house);
+		
+		 User user=userRepository.getReferenceById(userDetailsImp1.getUser().getId());
+		
+		//れびゅーフォームにhouseId,userIdを入れる
+		ReviewForm reviewForm=new ReviewForm();
+	 	reviewForm.setHouseId(id);
+		reviewForm.setUserId(user.getId());
+		
+		//ユーザーの投稿があるか判断する	 	
+//	
+//		if(!reviewRepository.findAllByHouseAndUser(house, user).isEmpty())
+//		{
+//			for(int i=0;reviewRepository.findAllByHouseAndUser(house, user).size();i++)
+//			{
+//				reviewForm.setPostedComment(reviewRepository.findAllByHouseAndUser(house, user).get);
+//			}
+//			
+//			System.out.println("already");
+//			model.addAttribute("reviewForm",reviewForm);
+//			model.addAttribute("ready","編集");
+//			return "/review/create";
+//		}
+		
+		System.out.println("ready");
+		model.addAttribute("reviewForm",reviewForm);
+		model.addAttribute("ready","投稿");
+		return "/review/create";
+	}
+
+	
+//	登録ポスト
+	@PostMapping("/create/{id}")
+	public String createt(@PathVariable(name="id") Integer id, @ModelAttribute @Validated ReviewForm reviewForm,BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model)
+	{
+		House house=houseRepository.getReferenceById(id);
+		model.addAttribute("house",house);
+		System.out.println("create");
+		
+		if(bindingResult.hasErrors())
+		{
+			return "review/create";
+		}
+		reviewService.createdReview(reviewForm);
+		redirectAttributes.addFlashAttribute("successMessage","レビューが正常に登録されました");
+		
+		return "redirect:/show";
+	}
+	
+//	コメント詳細
+//	@GetMapping("/review/show")
+	
+	
+	
+}
