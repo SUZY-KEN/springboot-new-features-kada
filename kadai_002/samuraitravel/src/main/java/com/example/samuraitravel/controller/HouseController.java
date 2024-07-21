@@ -1,5 +1,8 @@
 package com.example.samuraitravel.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -126,27 +129,88 @@ public class HouseController {
 		  
 		
 		//houses/show.htmlのページネーションの設定
-		
-		Page<Review> reviewPage=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id),pageable);
-		model.addAttribute("reviewPage", reviewPage);
+//		
+//		Page<Review> reviewPage=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id),pageable);
+//				model.addAttribute("reviewPage", reviewPage);
+				
+				List<Review> reviewList=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id));
+				model.addAttribute("reviewList", reviewList);
 		
 		Boolean hasReview=true;
 
-		  if (userDetailsImp1 != null && userDetailsImp1.getUser() != null) {
-		        User user = userRepository.getReferenceById(userDetailsImp1.getUser().getId());
-		        for(Review review:reviewPage)
-		        {
-		        	
-		        	if(review.getUser()==user)
-		        	{
-		        		hasReview=false;
-		        		
-		        		 model.addAttribute("reviews", review);
-		        	}
-		        }
-		       
-		    } 
+//		  if (userDetailsImp1 != null && userDetailsImp1.getUser() != null) {
+//		        User user = userRepository.getReferenceById(userDetailsImp1.getUser().getId());
+//		        for(Review review:reviewPage)
+//		        {
+//		        	
+//		        	if(review.getUser()==user)
+//		        	{
+//		        		hasReview=false;
+//		        		
+//		        		 model.addAttribute("reviews", review);
+//		        	}
+//		        }
+//		       
+//		    } 
+		
+		List<Review>reviewPage= new ArrayList<Review>();
+		System.out.println("REVIEWLISTインスタンス後"+reviewPage);
+		
+		if (userDetailsImp1 != null && userDetailsImp1.getUser() != null) {
+	        User user = userRepository.getReferenceById(userDetailsImp1.getUser().getId());
+	        
+	        Review reviewUser=new Review();
+	        for(Review review:reviewList)
+	        {
+	        	System.out.println("ユーザーれびゅー回し"+review);
+	        	if(review.getUser()==user)
+	        	{
+	        		hasReview=false;
+	        		
+	        		reviewUser=review;
+	        		reviewPage.add(review);
+	        		System.out.println("reviewPageにユーザーレビュー追加"+review);
+	        	
+	        		 model.addAttribute("reviews", review);
+	        	}
+	        }
+	       
+	    	reviewList.remove(reviewUser);
+    		System.out.println("reviewListのユーザーレビュー消去");
+	    } 
+		
+		
+		Integer i=0;
+		if(!hasReview)
+		{
+			System.out.println("reviewPageにレビュー追加");
+				for(Review review:reviewList)
+				{
+					i++;
+					if(i>5)
+					{
+						break;
+					}
+					reviewPage.add(review);
+					System.out.println("REVIEWPAGEADD前"+reviewPage);
+				}
+			
+		}else
+		{
+			for(Review review:reviewList)
+			{
+				i++;
+				if(i>6)
+				{
+					break;
+				}
+				reviewPage.add(review);
+			}
+		}
 
+		
+		System.out.println("りたーんまえ"+reviewPage);
+		model.addAttribute("reviewPage",reviewPage);
 		  model.addAttribute("hasReview",hasReview);
 		
 		return "houses/show";

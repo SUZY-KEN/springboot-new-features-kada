@@ -88,7 +88,7 @@ INSERT IGNORE INTO reservations (id, house_id, user_id, checkin_date, checkout_d
 INSERT IGNORE INTO reservations (id, house_id, user_id, checkin_date, checkout_date, number_of_people, amount) VALUES (11, 11, 1, '2023-04-01', '2023-04-02', 2, 6000);
 
 -- reviewsテーブル
-INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (1,1,1,3,"普通です");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (1,13,1,3,"普通です");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (2,2,1,4,"いいです");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (3,3,1,3,"good");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (4,4,1,1,"全然ダメ");
@@ -99,5 +99,5 @@ INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (10,10,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (11,11,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (12,12,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
-
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (13,1,1,3,"普通です");
 

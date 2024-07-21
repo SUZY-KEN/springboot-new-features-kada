@@ -249,7 +249,7 @@
 						
 						
 <!--						ページネーション-->
-						<div th:if="${reviewPage.getTotalPages() > 1}" class="mb-4 text-center">
+						<div th:if="${reviewList.size()>6}" class="mb-4 text-center">
 							
 							<a th:href="@{/review/show/__${house.getId()}__}" >すべてのレビューを見る</a>
 						</div>	

@@ -34,13 +34,15 @@
     <fullyQualifiedTypeName name="com.example.samuraitravel.entity.House"/>
     <fullyQualifiedTypeName name="com.example.samuraitravel.service.ReviewService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="com.example.samuraitravel.form.ReviewForm"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.example.samuraitravel.repository.UserRepository"/>
     <fullyQualifiedTypeName name="com.example.samuraitravel.security.UserDetailsImp1"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="java.lang.Boolean"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="com.example.samuraitravel.entity.Review"/>
 </qualifiedTypeNameHistroy>
