@@ -101,3 +101,16 @@ INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (12,12,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
 INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (13,1,1,3,"普通です");
 
+
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (15,2,2,4,"いいです");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (16,3,2,3,"good");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (17,4,2,1,"全然ダメ");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (18,5,2,3,"まあまあ");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (19,7,3,5,"よかった");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (20,8,3,3,"ふつう");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (21,9,3,3,"可もなく不可もなく");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (22,10,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (23,11,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
+INSERT IGNORE INTO reviews(id,user_id,house_id,star_num,posted_comment) VALUES (24,12,1,3,"ｂヴぁあいｂｖだｋｊｖｄヴぃｒんヴぁｗｖんまｖｌんヴぇらいヴぁｒんｖ");
+
+

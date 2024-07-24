@@ -118,7 +118,7 @@ public class HouseController {
 	
 	
 	@GetMapping("/{id}")
-	public String show(@PathVariable(name="id")Integer id,Model model,@PageableDefault(page=0,size=6,sort="id",direction = Direction.ASC)Pageable pageable,@AuthenticationPrincipal  UserDetailsImp1 userDetailsImp1) 
+	public String show(@PathVariable(name="id")Integer id,Model model,@AuthenticationPrincipal  UserDetailsImp1 userDetailsImp1) 
 		
 	{
 		House house=houseRepository.getReferenceById(id);
@@ -128,31 +128,14 @@ public class HouseController {
 		  
 		  
 		
-		//houses/show.htmlのページネーションの設定
-//		
-//		Page<Review> reviewPage=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id),pageable);
-//				model.addAttribute("reviewPage", reviewPage);
+			
 				
-				List<Review> reviewList=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id));
-				model.addAttribute("reviewList", reviewList);
+		List<Review> reviewList=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id));
+		model.addAttribute("reviewList", reviewList);
 		
 		Boolean hasReview=true;
 
-//		  if (userDetailsImp1 != null && userDetailsImp1.getUser() != null) {
-//		        User user = userRepository.getReferenceById(userDetailsImp1.getUser().getId());
-//		        for(Review review:reviewPage)
-//		        {
-//		        	
-//		        	if(review.getUser()==user)
-//		        	{
-//		        		hasReview=false;
-//		        		
-//		        		 model.addAttribute("reviews", review);
-//		        	}
-//		        }
-//		       
-//		    } 
-		
+
 		List<Review>reviewPage= new ArrayList<Review>();
 		System.out.println("REVIEWLISTインスタンス後"+reviewPage);
 		

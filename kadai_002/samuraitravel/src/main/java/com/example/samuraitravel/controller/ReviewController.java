@@ -133,10 +133,18 @@ public class ReviewController {
 	public String show(@PathVariable(name="id")Integer id,Model model,@PageableDefault(page=0,size=10,sort="id",direction = Direction.ASC)Pageable pageable,@AuthenticationPrincipal  UserDetailsImp1 userDetailsImp1)
 	{
 		House house=houseRepository.getReferenceById(id);
+		User user=new User();
 		Page<Review> reviewPage=reviewRepository.findAllByHouse(houseRepository.getReferenceById(id),pageable);
 		model.addAttribute("reviewPage", reviewPage);
 		model.addAttribute("house",house);
 		
+		if (userDetailsImp1 != null && userDetailsImp1.getUser() != null) {
+	        user = userRepository.getReferenceById(userDetailsImp1.getUser().getId());
+	        
+	    
+		}
+	    model.addAttribute("user",user);
+	    
 		return "/review/show";
 	}
 	

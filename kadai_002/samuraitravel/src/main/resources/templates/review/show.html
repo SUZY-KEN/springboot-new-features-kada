@@ -51,12 +51,29 @@
 	                              <div th:each="review:${reviewPage}">
 									<div class="card">
 	                                  <h3 th:text="${review.getUser().getName()}"></h3>
-									  <div th:if="${review==reviews}">
-										<a th:href="@{/review/edit/__${review.getId()}__}" >編集</a>
-	<!--									モーダル-->
-										<a th:href="@{/review/edit/__${review.getId()}__}" 	class="red">削除</a>
-										
-									  </div>
+									    <div th:if="${review.getUser()==user}">
+		  									<a th:href="@{/review/edit/__${review.getId()}__}">編集</a>
+		  <!--									モーダル-->
+		  									
+		  									<a href="#" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>   
+		  									
+		  	                                <!-- 削除用モーダル -->
+		  	                                <div class="modal fade" th:id="${'deleteReviewModal' + review.getId()}" tabindex="-1" th:aria-labelledby="${'deleteReviewModalLabel' + review.getId()}">
+		  	                                    <div class="modal-dialog">
+		  	                                        <div class="modal-content">
+		  	                                            <div class="modal-header">
+		  	                                                <h5 class="modal-title" th:id="${'deleteReviewModalLabel' + review.getId()}" th:text="${review.getHouse().getName() + 'のレビューを削除してもよろしいですか？'}"></h5>
+		  	                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="閉じる"></button>
+		  	                                            </div>
+		  	                                            <div class="modal-footer">
+		  	                                                <form method="post"th:action="@{/review/__${review.getId()}__/__${review.getHouse().getId()}__/delete}">
+		  	                                                    <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
+		  	                                                </form>
+		  	                                            </div>
+		  	                                        </div>
+		  	                                    </div>
+		  	                                </div>         
+								 		 </div>
 	                                 
 	
 										
